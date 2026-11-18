@@ -1,0 +1,4 @@
+data/raw/Consumer_Reviews.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/cleaned_customer_reviews.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/sentiment_analysis_results.csv filter=lfs diff=lfs merge=lfs -text
+data/processed/final_customer_analysis.csv filter=lfs diff=lfs merge=lfs -text
