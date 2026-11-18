@@ -88,7 +88,7 @@ try:
         engine,
         """
         SELECT DISTINCT categories
-        FROM customer_reviews
+        FROM public.customer_reviews
         WHERE categories IS NOT NULL
           AND TRIM(categories) <> ''
         ORDER BY categories
@@ -226,7 +226,7 @@ try:
                 WHERE sentiment_label = 'Negative'
             ) AS negative_reviews
 
-        FROM customer_reviews
+        FROM public.customer_reviews
 
         {where_clause}
         """,
@@ -288,7 +288,7 @@ try:
             sentiment_label,
             COUNT(*) AS total_reviews
 
-        FROM customer_reviews
+        FROM public.customer_reviews
 
         {where_clause}
 
@@ -333,7 +333,7 @@ try:
             rating,
             COUNT(*) AS total_reviews
 
-        FROM customer_reviews
+        FROM public.customer_reviews
 
         {where_clause}
 
@@ -378,7 +378,7 @@ try:
             TRIM(t.theme) AS theme,
             COUNT(*) AS total_reviews
 
-        FROM customer_reviews AS cr
+        FROM public.customer_reviews AS cr
 
         CROSS JOIN LATERAL
             UNNEST(
@@ -460,7 +460,7 @@ try:
             TRIM(t.theme) AS theme,
             COUNT(*) AS negative_reviews
 
-        FROM customer_reviews AS cr
+        FROM public.customer_reviews AS cr
 
         CROSS JOIN LATERAL
             UNNEST(
@@ -516,7 +516,7 @@ try:
             review_text_clean,
             review_date_clean
 
-        FROM customer_reviews
+        FROM public.customer_reviews
 
         {where_clause}
 
@@ -553,7 +553,7 @@ try:
             finding,
             recommendation
 
-        FROM business_recommendations
+        FROM public.business_recommendations
 
         ORDER BY recommendation_id
         """
