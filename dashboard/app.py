@@ -58,10 +58,8 @@ def fetch_data(engine, query, params=None):
 
 st.sidebar.header("Database Connection")
 
-password = st.sidebar.text_input(
-    "PostgreSQL Password",
-    type="password"
-)
+database_url = st.secrets["connections"]["postgresql"]["url"]
+password = database_url
 
 if password:
     try:
