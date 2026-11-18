@@ -34,23 +34,16 @@ DB_NAME = "voc_analytics_db"
 DB_USER = "postgres"
 
 
+# --------------------------------------------------
+# 2. CLOUD DATABASE CONFIGURATION
+# --------------------------------------------------
+
 @st.cache_resource
-def create_database_connection(password):
-    database_url = URL.create(
-        drivername="postgresql+psycopg2",
-        username=DB_USER,
-        password=password,
-        host=DB_HOST,
-        port=DB_PORT,
-        database=DB_NAME
+def create_database_connection(database_url):
+    return create_engine(
+        database_url,
+        pool_pre_ping=True
     )
-    return create_engine(database_url)
-
-
-def fetch_data(engine, query, params=None):
-    with engine.connect() as connection:
-        return pd.read_sql(text(query), connection, params=params or {})
-
 
 # --------------------------------------------------
 # 3. DATABASE LOGIN
